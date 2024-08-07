@@ -85,7 +85,7 @@ for (let i = 0; i < planTitleDOMList.length; i++) {
 }
 
 const contactUsDOM = document.getElementById("contact-us");
-contactUsDOM.onsubmit = (event) => {
+contactUsDOM.onsubmit = async (event) => {
   event.preventDefault();
   const formData = new FormData(contactUsDOM);
   const email = formData.get("email").toLowerCase();
