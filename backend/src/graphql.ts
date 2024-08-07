@@ -78,7 +78,6 @@ export type Message = {
   __typename?: 'message';
   content: Scalars['String']['output'];
   created_at: Scalars['timestamp']['output'];
-  reply_to_uuid?: Maybe<Scalars['uuid']['output']>;
   /** An object relationship */
   room: Room;
   room_uuid: Scalars['uuid']['output'];
@@ -142,7 +141,6 @@ export type Message_Bool_Exp = {
   _or?: InputMaybe<Array<Message_Bool_Exp>>;
   content?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
-  reply_to_uuid?: InputMaybe<Uuid_Comparison_Exp>;
   room?: InputMaybe<Room_Bool_Exp>;
   room_uuid?: InputMaybe<Uuid_Comparison_Exp>;
   user?: InputMaybe<User_Bool_Exp>;
@@ -160,7 +158,6 @@ export enum Message_Constraint {
 export type Message_Insert_Input = {
   content?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  reply_to_uuid?: InputMaybe<Scalars['uuid']['input']>;
   room?: InputMaybe<Room_Obj_Rel_Insert_Input>;
   room_uuid?: InputMaybe<Scalars['uuid']['input']>;
   user?: InputMaybe<User_Obj_Rel_Insert_Input>;
@@ -173,7 +170,6 @@ export type Message_Max_Fields = {
   __typename?: 'message_max_fields';
   content?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamp']['output']>;
-  reply_to_uuid?: Maybe<Scalars['uuid']['output']>;
   room_uuid?: Maybe<Scalars['uuid']['output']>;
   user_uuid?: Maybe<Scalars['uuid']['output']>;
   uuid?: Maybe<Scalars['uuid']['output']>;
@@ -183,7 +179,6 @@ export type Message_Max_Fields = {
 export type Message_Max_Order_By = {
   content?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
-  reply_to_uuid?: InputMaybe<Order_By>;
   room_uuid?: InputMaybe<Order_By>;
   user_uuid?: InputMaybe<Order_By>;
   uuid?: InputMaybe<Order_By>;
@@ -194,7 +189,6 @@ export type Message_Min_Fields = {
   __typename?: 'message_min_fields';
   content?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamp']['output']>;
-  reply_to_uuid?: Maybe<Scalars['uuid']['output']>;
   room_uuid?: Maybe<Scalars['uuid']['output']>;
   user_uuid?: Maybe<Scalars['uuid']['output']>;
   uuid?: Maybe<Scalars['uuid']['output']>;
@@ -204,7 +198,6 @@ export type Message_Min_Fields = {
 export type Message_Min_Order_By = {
   content?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
-  reply_to_uuid?: InputMaybe<Order_By>;
   room_uuid?: InputMaybe<Order_By>;
   user_uuid?: InputMaybe<Order_By>;
   uuid?: InputMaybe<Order_By>;
@@ -230,7 +223,6 @@ export type Message_On_Conflict = {
 export type Message_Order_By = {
   content?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
-  reply_to_uuid?: InputMaybe<Order_By>;
   room?: InputMaybe<Room_Order_By>;
   room_uuid?: InputMaybe<Order_By>;
   user?: InputMaybe<User_Order_By>;
@@ -250,8 +242,6 @@ export enum Message_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  ReplyToUuid = 'reply_to_uuid',
-  /** column name */
   RoomUuid = 'room_uuid',
   /** column name */
   UserUuid = 'user_uuid',
@@ -263,7 +253,6 @@ export enum Message_Select_Column {
 export type Message_Set_Input = {
   content?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  reply_to_uuid?: InputMaybe<Scalars['uuid']['input']>;
   room_uuid?: InputMaybe<Scalars['uuid']['input']>;
   user_uuid?: InputMaybe<Scalars['uuid']['input']>;
   uuid?: InputMaybe<Scalars['uuid']['input']>;
@@ -281,7 +270,6 @@ export type Message_Stream_Cursor_Input = {
 export type Message_Stream_Cursor_Value_Input = {
   content?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  reply_to_uuid?: InputMaybe<Scalars['uuid']['input']>;
   room_uuid?: InputMaybe<Scalars['uuid']['input']>;
   user_uuid?: InputMaybe<Scalars['uuid']['input']>;
   uuid?: InputMaybe<Scalars['uuid']['input']>;
@@ -293,8 +281,6 @@ export enum Message_Update_Column {
   Content = 'content',
   /** column name */
   CreatedAt = 'created_at',
-  /** column name */
-  ReplyToUuid = 'reply_to_uuid',
   /** column name */
   RoomUuid = 'room_uuid',
   /** column name */
@@ -1333,7 +1319,7 @@ export type User_Room_Bool_Exp = {
 
 /** unique or primary key constraints on table "user_room" */
 export enum User_Room_Constraint {
-  /** unique or primary key constraint on columns "room_uuid", "user_uuid" */
+  /** unique or primary key constraint on columns "user_uuid", "room_uuid" */
   UserRoomPkey = 'user_room_pkey'
 }
 
@@ -1561,14 +1547,6 @@ export type AddUserMutationVariables = Exact<{
 
 export type AddUserMutation = { __typename?: 'mutation_root', insert_user_one?: { __typename?: 'user', uuid: any } | null };
 
-export type UpdateUserPasswordMutationVariables = Exact<{
-  uuid: Scalars['uuid']['input'];
-  password: Scalars['String']['input'];
-}>;
-
-
-export type UpdateUserPasswordMutation = { __typename?: 'mutation_root', update_user?: { __typename?: 'user_mutation_response', affected_rows: number } | null };
-
 export type GetUsersByUsernameQueryVariables = Exact<{
   username: Scalars['String']['input'];
 }>;
@@ -1641,13 +1619,6 @@ export const AddUserDocument = gql`
   }
 }
     `;
-export const UpdateUserPasswordDocument = gql`
-    mutation updateUserPassword($uuid: uuid!, $password: String!) {
-  update_user(where: {uuid: {_eq: $uuid}}, _set: {password: $password}) {
-    affected_rows
-  }
-}
-    `;
 export const GetUsersByUsernameDocument = gql`
     query getUsersByUsername($username: String!) {
   user(where: {username: {_eq: $username}}) {
@@ -1684,9 +1655,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     addUser(variables: AddUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AddUserMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<AddUserMutation>(AddUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'addUser', 'mutation', variables);
-    },
-    updateUserPassword(variables: UpdateUserPasswordMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UpdateUserPasswordMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UpdateUserPasswordMutation>(UpdateUserPasswordDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateUserPassword', 'mutation', variables);
     },
     getUsersByUsername(variables: GetUsersByUsernameQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUsersByUsernameQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUsersByUsernameQuery>(GetUsersByUsernameDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUsersByUsername', 'query', variables);
