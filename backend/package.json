@@ -6,8 +6,12 @@
     "graphql-request": "6.1.0",
     "jsonwebtoken": "9.0.2",
     "morgan": "1.10.0",
+<<<<<<< HEAD
     "multer": "1.4.5-lts.1",
     "nodemailer": "6.9.14"
+=======
+    "multer": "1.4.5-lts.1"
+>>>>>>> b68c32f (feat(04): handle files)
   },
   "devDependencies": {
     "@types/express": "4.17.21",
