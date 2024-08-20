@@ -1,8 +1,5 @@
-import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
-import { getMainDefinition } from "@apollo/client/utilities";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
-import { createClient } from "graphql-ws";
 
 const auth = () => {
   const token = localStorage.getItem("token");
@@ -21,27 +18,7 @@ const httpLink = new HttpLink({
 
 const authLink = setContext(auth).concat(httpLink);
 
-const wsLink = new GraphQLWsLink(
-  createClient({
-    url: process.env.REACT_APP_HASURA_WSLINK!,
-    lazy: true,
-    connectionParams: auth,
-  })
-);
-
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === "OperationDefinition" &&
-      definition.operation === "subscription"
-    );
-  },
-  wsLink,
-  authLink
-);
-
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: splitLink,
+  link: authLink,
 });
