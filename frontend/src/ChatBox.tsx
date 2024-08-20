@@ -54,14 +54,13 @@ const ChatBox: React.FC<ChatBoxProps> = ({ user, room, handleClose }) => {
     <Button
       type="link"
       style={{
-        width: "40px",
-        height: "40px",
+        width: "36px",
+        height: "36px",
         fontSize: "12px",
         position: "absolute",
         right: 0,
         top: 0,
       }}
-      className="need-interaction"
       onClick={handleClose}
     >
       ❌
@@ -84,9 +83,9 @@ const ChatBox: React.FC<ChatBoxProps> = ({ user, room, handleClose }) => {
       </Container>
       <MessageFeed user={user} messages={data?.message} />
       <div
-        className="need-interaction"
         style={{
-          marginTop: "12px",
+          margin: "12px",
+          marginBottom: 0,
           display: "flex",
           width: "100%",
         }}

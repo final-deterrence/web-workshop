@@ -95,7 +95,6 @@ const FileShare: React.FC<FileShareProps> = ({ room, handleClose }) => {
         left: 0,
         top: 0,
       }}
-      className="need-interaction"
       onClick={handleRefresh}
     >
       <ReloadOutlined spin={refreshing} />
@@ -106,14 +105,13 @@ const FileShare: React.FC<FileShareProps> = ({ room, handleClose }) => {
     <Button
       type="link"
       style={{
-        width: "40px",
-        height: "40px",
+        width: "36px",
+        height: "36px",
         fontSize: "12px",
         position: "absolute",
         right: 0,
         top: 0,
       }}
-      className="need-interaction"
       onClick={handleClose}
     >
       ❌
@@ -136,10 +134,7 @@ const FileShare: React.FC<FileShareProps> = ({ room, handleClose }) => {
         </Text>
       </Container>
       <FileList roomUUID={room.uuid} filelist={fileList} />
-      <div
-        className="need-interaction"
-        style={{ marginTop: "12px", width: "100%" }}
-      >
+      <div style={{ margin: "12px", marginBottom: 0, width: "100%" }}>
         <Dragger
           customRequest={({ file, onSuccess, onError }) => {
             uploadFile(file as File, onSuccess, onError);
