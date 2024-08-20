@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button, Card, fontFamilies, Text } from "./Components";
 
 const Dice: React.FC = () => {
   const [value, setValue] = useState<number>(0);
@@ -9,20 +8,38 @@ const Dice: React.FC = () => {
   };
 
   return (
-    <Card style={{ width: "150px", height: "150px" }}>
-      <Text
-        size="extra"
-        style={{ fontFamily: fontFamilies.join(","), lineHeight: 1 }}
-      >
+    <div
+      style={{
+        width: "150px",
+        height: "150px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "12px",
+        margin: "12px",
+        borderRadius: "8px",
+        backgroundColor: "rgba(255, 255, 255, 0.25)",
+        boxShadow: "0 0 18px rgba(0, 0, 0, 0.25)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      <span style={{ fontSize: "80px" }}>
         <strong>{value}</strong>
-      </Text>
-      <Button
-        style={{ marginTop: "12px", width: "120px" }}
+      </span>
+      <button
+        style={{
+          marginTop: "12px",
+          height: "40px",
+          width: "120px",
+          fontSize: "18px",
+          cursor: "pointer",
+        }}
         onClick={handleRoll}
       >
         <strong>摇骰子🎲</strong>
-      </Button>
-    </Card>
+      </button>
+    </div>
   );
 };
 
