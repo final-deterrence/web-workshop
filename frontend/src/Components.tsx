@@ -57,19 +57,24 @@ export const Bubble: React.FC<React.PropsWithChildren<{ style?: React.CSSPropert
   </div>
 );
 
-export const fontFamilies = [
-  "Times New Roman",
-  "Times",
-  "Nimbus Roman No9 L",
-  "Liberation Serif",
-  "FreeSerif",
-  "Hoefler Text",
-  "Microsoft YaHei",
-  "Hiragino Sans GB",
-  "WenQuanYi Micro Hei",
-  "STHeiti",
-  "sans-serif",
-];
+export const Bubble: React.FC<
+  React.PropsWithChildren<{ style?: React.CSSProperties }>
+> = ({ children, style }) => {
+  return (
+    <div
+      style={{
+        ...style,
+        padding: "6px",
+        margin: "6px",
+        borderRadius: "8px",
+        boxShadow: "0 0 6px rgba(0, 0, 0, 0.25)",
+        backdropFilter: "blur(6px)",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 export const Text: React.FC<
   React.PropsWithChildren<{ style?: React.CSSProperties; size?: string; editable?: any; copyable?: any }>
