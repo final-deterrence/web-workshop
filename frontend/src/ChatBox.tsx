@@ -84,9 +84,9 @@ const ChatBox: React.FC<ChatBoxProps> = ({ user, room, handleClose }) => {
       </Container>
       <MessageFeed user={user} messages={data?.message} />
       <div
+        className="need-interaction"
         style={{
-          margin: "12px",
-          marginBottom: 0,
+          marginTop: "12px",
           display: "flex",
           width: "100%",
         }}
