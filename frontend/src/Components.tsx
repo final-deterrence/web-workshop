@@ -23,6 +23,10 @@ export const Card = forwardRef<HTMLDivElement, React.PropsWithChildren<{ style?:
       ref={ref}
       style={{
         ...style,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
         padding: "12px",
         margin: "12px",
         borderRadius: "8px",
@@ -52,6 +56,20 @@ export const Bubble: React.FC<React.PropsWithChildren<{ style?: React.CSSPropert
     {children}
   </div>
 );
+
+export const fontFamilies = [
+  "Times New Roman",
+  "Times",
+  "Nimbus Roman No9 L",
+  "Liberation Serif",
+  "FreeSerif",
+  "Hoefler Text",
+  "Microsoft YaHei",
+  "Hiragino Sans GB",
+  "WenQuanYi Micro Hei",
+  "STHeiti",
+  "sans-serif",
+];
 
 export const Text: React.FC<
   React.PropsWithChildren<{ style?: React.CSSProperties; size?: string; editable?: any; copyable?: any }>
@@ -114,21 +132,6 @@ export const Scroll: React.FC<React.PropsWithChildren<{ style?: React.CSSPropert
     {children}
   </div>
 );
-
-
-export const fontFamilies = [
-  "Times New Roman",
-  "Times",
-  "Nimbus Roman No9 L",
-  "Liberation Serif",
-  "FreeSerif",
-  "Hoefler Text",
-  "Microsoft YaHei",
-  "Hiragino Sans GB",
-  "WenQuanYi Micro Hei",
-  "STHeiti",
-  "sans-serif",
-];
 
 interface ContextMenuProps {
   position: { x: number; y: number } | null;
